@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import React, { useState } from "react";
 
 const Home = () => {
@@ -38,19 +38,23 @@ const Home = () => {
           <ul>
             {todoList.map((item, index) => (
               <li key={index} className={item.completed ? "completed" : ""}>
-                <div className="todo-text">
-                  {item.text}
+                <div className="todos-content-item">
+                  <div className="todo-text">{item.text}</div>
                   <div className="actions">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id={`inlineCheckbox${index}`}
-                      value={item.text}
-                      checked={item.completed}
-                      onChange={() => handleToggleComplete(index)}
-                    />
-                    <label className="form-check-label" htmlFor={`inlineCheckbox${index}`}>
-                    </label>
+                    <div className="input-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id={`inlineCheckbox${index}`}
+                        value={item.text}
+                        checked={item.completed}
+                        onChange={() => handleToggleComplete(index)}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor={`inlineCheckbox${index}`}
+                      ></label>
+                    </div>
                     <button
                       className="btn-picto"
                       type="button"
@@ -58,7 +62,7 @@ const Home = () => {
                       title="Delete"
                       onClick={() => handleDelete(index)}
                     >
-                      <i className="far fa-trash-alt"></i>
+                      <i className="fa-regular fa-trash-can"></i>
                     </button>
                   </div>
                 </div>
