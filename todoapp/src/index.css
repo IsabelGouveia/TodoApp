@@ -144,11 +144,21 @@ form button {
 #todolist .form-check-input {
 	transform: scale(1.3);
 	/* Adjust the scale as needed */
-}
-#todolist .form-check-input:checked {
-	transform: scale(1.3); /* Adjust the scale as needed */
-	background-color: white;
+  }
+  
+#todolist [type=checkbox]:checked ~ .form-check-input {
+	transform: scale(1.3);
 	color: transparent;
 	outline: none;
   }
   
+  /* empty list*/
+
+#todolist p {
+	margin-top:2.6rem;
+	text-align:center;
+	letter-spacing:.05em;
+	font-style:italic;
+	opacity:0.8;
+
+  }
