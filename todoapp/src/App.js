@@ -4,6 +4,7 @@ import React, { useState } from "react";
 const Home = () => {
   const [newItem, setNewItem] = useState("");
   const [todoList, setTodoList] = useState([]);
+  const [moveCompletedToEnd, setMoveCompletedToEnd] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +20,13 @@ const Home = () => {
     // Toggle the 'completed' status of the item at the given index
     const updatedList = [...todoList];
     updatedList[index].completed = !updatedList[index].completed;
+
+    // Move completed item to the end if the toggle is enabled
+    if (moveCompletedToEnd) {
+      const completedItem = updatedList.splice(index, 1)[0];
+      updatedList.push(completedItem);
+    }
+
     setTodoList(updatedList);
   };
 
@@ -27,6 +35,11 @@ const Home = () => {
     const updatedList = [...todoList];
     updatedList.splice(index, 1);
     setTodoList(updatedList);
+  };
+
+  const handleToggleOrder = () => {
+    // Toggle the moveCompletedToEnd state
+    setMoveCompletedToEnd(!moveCompletedToEnd);
   };
 
   return (
@@ -74,6 +87,14 @@ const Home = () => {
             </ul>
           )}
         </div>
+        <div className="toggle">
+          <input
+            type="checkbox"
+            checked={moveCompletedToEnd}
+            onChange={handleToggleOrder}
+          />
+          <label>Move done items to the end?</label>
+        </div>
         <div className="input-todo">
           <form name="newform" onSubmit={handleSubmit}>
             <label htmlFor="newitem"></label>
@@ -93,3 +114,4 @@ const Home = () => {
 };
 
 export default Home;
+
